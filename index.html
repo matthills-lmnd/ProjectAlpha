@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Alpha | GTN Loss Ratio Automation</title>
-
   <style>
     :root{
       --bg:#f5f7fb;
@@ -21,10 +20,11 @@
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
-      font-family: Inter, Arial, sans-serif;
+      font-family:Inter, Arial, Helvetica, sans-serif;
       background:linear-gradient(180deg,#f7f9fc 0%, #eef3f9 100%);
       color:var(--text);
     }
@@ -35,22 +35,90 @@
       padding:28px 20px 48px;
     }
 
+    .section{
+      margin-top:24px;
+    }
+
+    /* HERO */
     .hero{
-      background:linear-gradient(135deg,var(--navy),var(--navy-2));
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 100%);
       color:#fff;
       border-radius:28px;
-      padding:34px;
+      padding:34px 34px 28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      right:-120px;
+      top:-90px;
+      background:radial-gradient(circle, rgba(255,255,255,0.12), rgba(255,255,255,0));
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.16);
+      margin-bottom:16px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.4fr .9fr;
+      gap:24px;
+      align-items:end;
     }
 
     h1{
       margin:0 0 12px;
       font-size:40px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
     }
 
     .hero-subtitle{
-      opacity:.9;
+      margin:0;
+      font-size:17px;
+      line-height:1.7;
+      color:rgba(255,255,255,.9);
       max-width:760px;
-      line-height:1.6;
+    }
+
+    .hero-panel{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:20px;
+      padding:18px;
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-panel-title{
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      opacity:.85;
+      margin-bottom:10px;
+    }
+
+    .hero-panel p{
+      margin:0;
+      line-height:1.7;
+      color:rgba(255,255,255,.95);
+      font-size:14px;
     }
 
     .metrics{
@@ -61,7 +129,8 @@
     }
 
     .metric{
-      background:rgba(255,255,255,.1);
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
       padding:16px;
       text-align:center;
@@ -70,209 +139,664 @@
     .metric .value{
       font-size:28px;
       font-weight:800;
+      line-height:1;
+      margin-bottom:6px;
     }
 
     .metric .label{
       font-size:12px;
-      opacity:.8;
-      margin-top:4px;
+      color:rgba(255,255,255,.82);
+      text-transform:uppercase;
+      letter-spacing:.04em;
     }
 
-    .grid{
+    /* GENERIC */
+    .section-title{
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:0 0 12px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px 34px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h2{
+      margin:0 0 16px;
+      font-size:30px;
+      letter-spacing:-0.02em;
+      color:var(--text);
+    }
+
+    .card p{
+      margin:0;
+      font-size:18px;
+      line-height:1.8;
+      color:var(--muted);
+    }
+
+    .highlight{
+      color:var(--accent-dark);
+      font-weight:700;
+    }
+
+    /* WHY THIS MATTERS */
+    .impact-stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .impact-row{
+      display:flex;
+      align-items:stretch;
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .impact-accent{
+      width:10px;
+      background:var(--accent);
+      flex:0 0 10px;
+    }
+
+    .impact-content{
+      padding:28px 30px;
+      width:100%;
+    }
+
+    .impact-content h3{
+      margin:0 0 10px;
+      font-size:32px;
+      letter-spacing:-0.02em;
+      color:var(--text);
+    }
+
+    .impact-content p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    /* PROBLEM OUTCOME */
+    .problem-outcome-stack{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .feature-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px 34px;
+      box-shadow:var(--shadow);
+    }
+
+    .feature-card h2{
+      margin:0 0 18px;
+      font-size:30px;
+      letter-spacing:-0.02em;
+      color:var(--text);
+    }
+
+    .feature-card p{
+      margin:0;
+      font-size:18px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:1200px;
+    }
+
+    .feature-card ul{
+      margin:22px 0 0;
+      padding-left:34px;
+    }
+
+    .feature-card li{
+      margin:16px 0;
+      font-size:18px;
+      line-height:1.6;
+      color:var(--text);
+    }
+
+    /* SOLUTION ARCHITECTURE */
+    .architecture-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px 34px;
+      box-shadow:var(--shadow);
+    }
+
+    .architecture-card h2{
+      margin:0 0 16px;
+      font-size:30px;
+      letter-spacing:-0.02em;
+      color:var(--text);
+    }
+
+    .architecture-intro{
+      margin:0;
+      font-size:18px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:1200px;
+    }
+
+    .architecture-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:26px;
+    }
+
+    .arch-step{
+      background:#fbfcff;
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px 24px;
+      text-align:center;
+    }
+
+    .arch-number{
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:var(--accent);
+      color:#fff;
+      font-size:22px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 18px;
+    }
+
+    .arch-step h3{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.2;
+      color:var(--text);
+    }
+
+    .arch-step p{
+      margin:0;
+      font-size:17px;
+      line-height:1.65;
+      color:var(--muted);
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:28px;
+    }
+
+    .pill{
+      font-size:18px;
+      font-weight:700;
+      color:#2a3550;
+      background:#eef3ff;
+      border:1px solid #d7e1fb;
+      padding:14px 26px;
+      border-radius:999px;
+    }
+
+    /* DEMO */
+    .demo-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px 34px;
+      box-shadow:var(--shadow);
+    }
+
+    .demo-card h2{
+      margin:0 0 14px;
+      font-size:30px;
+      letter-spacing:-0.02em;
+    }
+
+    .demo-card p{
+      margin:0;
+      font-size:18px;
+      line-height:1.8;
+      color:var(--muted);
+    }
+
+    .demo-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:18px;
       margin-top:22px;
     }
 
-    .card{
-      background:var(--card);
+    .demo-item{
+      background:#fafcff;
       border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:22px;
-    }
-
-    h2{margin:0 0 10px}
-
-    p{
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    ul{
-      padding-left:18px;
-      margin-top:12px;
-    }
-
-    li{
-      margin:6px 0;
-    }
-
-    .flow{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:14px;
-    }
-
-    .flow-step{
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      text-align:center;
-      background:#fafbff;
-    }
-
-    .demo{
-      margin-top:22px;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:24px;
-      padding:22px;
-    }
-
-    .demo-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-top:10px;
+      border-radius:22px;
+      padding:16px;
     }
 
     .demo-item img{
+      display:block;
       width:100%;
-      border-radius:12px;
+      height:auto;
+      border-radius:14px;
       border:1px solid var(--border);
+      background:#fff;
     }
 
-    .caption{
-      text-align:center;
-      font-size:13px;
+    .demo-caption{
+      margin-top:12px;
+      font-size:15px;
       color:var(--muted);
-      margin-top:6px;
+      text-align:center;
+      line-height:1.6;
+    }
+
+    /* TWO COLUMN BOTTOM */
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .small-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:28px 30px;
+      box-shadow:var(--shadow);
+    }
+
+    .small-card h2{
+      margin:0 0 12px;
+      font-size:28px;
+      letter-spacing:-0.02em;
+    }
+
+    .small-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:17px;
+    }
+
+    .small-card ul{
+      margin:18px 0 0;
+      padding-left:24px;
+    }
+
+    .small-card li{
+      margin:12px 0;
+      font-size:17px;
+      line-height:1.6;
+      color:var(--text);
+    }
+
+    .quote{
+      background:linear-gradient(135deg,#fff4fa,#ffffff);
+      border:1px solid #ffd3e8;
+    }
+
+    .quote p{
+      font-size:18px;
+      color:var(--text);
+    }
+
+    .quote strong{
+      color:var(--accent-dark);
     }
 
     .footer{
       margin-top:24px;
       text-align:center;
-      font-size:12px;
       color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
     }
 
-    @media(max-width:900px){
-      .grid,.metrics,.flow,.demo-grid{
+    @media (max-width:980px){
+      .hero-grid,
+      .metrics,
+      .architecture-grid,
+      .demo-grid,
+      .grid-2{
         grid-template-columns:1fr;
       }
     }
 
+    @media (max-width:640px){
+      .page{
+        padding:16px 14px 34px;
+      }
+
+      .hero{
+        padding:24px 20px;
+        border-radius:22px;
+      }
+
+      h1{
+        font-size:31px;
+      }
+
+      .card,
+      .feature-card,
+      .architecture-card,
+      .demo-card,
+      .small-card{
+        padding:22px 22px;
+        border-radius:22px;
+      }
+
+      .impact-content{
+        padding:22px 22px;
+      }
+
+      .feature-card h2,
+      .architecture-card h2,
+      .demo-card h2,
+      .small-card h2{
+        font-size:24px;
+      }
+
+      .impact-content h3{
+        font-size:24px;
+      }
+
+      .feature-card p,
+      .feature-card li,
+      .impact-content p,
+      .architecture-intro,
+      .arch-step p,
+      .demo-card p,
+      .demo-caption,
+      .small-card p,
+      .small-card li,
+      .pill{
+        font-size:16px;
+      }
+
+      .arch-step h3{
+        font-size:21px;
+      }
+
+      .feature-card ul{
+        padding-left:24px;
+      }
+
+      .pill{
+        padding:12px 18px;
+      }
+    }
   </style>
 </head>
-
 <body>
-<div class="page">
+  <div class="page">
 
-  <div class="hero">
-    <h1>Automating Gross-to-Net Loss Ratio Reporting</h1>
-    <p class="hero-subtitle">
-      Project Alpha replaces a repetitive, manual monthly reporting workflow with a
-      scalable Python → Google Sheets pipeline, improving speed, consistency, and reliability.
-    </p>
+    <section class="hero">
+      <div class="eyebrow">Finance Automation • Project Alpha</div>
 
-    <div class="metrics">
-      <div class="metric">
-        <div class="value">4 hrs</div>
-        <div class="label">Saved per month</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Automating Gross-to-Net Loss Ratio Reporting</h1>
+          <p class="hero-subtitle">
+            Project Alpha replaces a repetitive, manual monthly reporting workflow with a
+            direct Python-to-Google-Sheets pipeline, reducing execution time, improving
+            consistency, and turning a fragile process into a scalable operating asset.
+          </p>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-panel-title">Executive Summary</div>
+          <p>
+            What used to take roughly <strong>4 hours per month</strong> can now
+            be executed through a <strong>1 click push-button workflow</strong>. The result is
+            faster reporting, lower manual risk, cleaner outputs, and a foundation that can
+            be extended to adjacent finance automation opportunities.
+          </p>
+        </div>
       </div>
-      <div class="metric">
-        <div class="value">1 click</div>
-        <div class="label">Push-button workflow</div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="value">4 hrs</div>
+          <div class="label">Saved per month</div>
+        </div>
+        <div class="metric">
+          <div class="value">1 click</div>
+          <div class="label">Push-button workflow</div>
+        </div>
+        <div class="metric">
+          <div class="value">&lt;1 run</div>
+          <div class="label">Payback period</div>
+        </div>
+        <div class="metric">
+          <div class="value">48+ hrs</div>
+          <div class="label">Annual time returned</div>
+        </div>
       </div>
-      <div class="metric">
-        <div class="value">&lt;1 run</div>
-        <div class="label">Payback period</div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Why This Matters</div>
+
+      <div class="impact-stack">
+        <div class="impact-row">
+          <div class="impact-accent"></div>
+          <div class="impact-content">
+            <h3>Efficiency</h3>
+            <p>
+              Eliminates recurring manual preparation work and compresses a multi-step process into a repeatable runbook.
+            </p>
+          </div>
+        </div>
+
+        <div class="impact-row">
+          <div class="impact-accent"></div>
+          <div class="impact-content">
+            <h3>Control</h3>
+            <p>
+              Reduces formatting drift, copy-paste risk, and inconsistencies across Excel and Google Sheets outputs.
+            </p>
+          </div>
+        </div>
+
+        <div class="impact-row">
+          <div class="impact-accent"></div>
+          <div class="impact-content">
+            <h3>Scalability</h3>
+            <p>
+              Establishes a modular pattern that can be reused for future reporting and finance process automation.
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="metric">
-        <div class="value">48+ hrs</div>
-        <div class="label">Annual time returned</div>
+    </section>
+
+    <section class="section">
+      <div class="problem-outcome-stack">
+
+        <div class="feature-card">
+          <h2>The Problem</h2>
+          <p>
+            The prior process relied on recurring manual effort to prepare the Gross-to-Net Loss Ratio
+            reporting package. This created a workflow that was
+            <span class="highlight">time-intensive, repetitive, and difficult to scale</span>.
+          </p>
+          <ul>
+            <li>~4 hours of hands-on work each month</li>
+            <li>Manual data shaping, formatting, and output preparation</li>
+            <li>Higher exposure to human error and version inconsistency</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h2>The Outcome</h2>
+          <p>
+            Project Alpha transforms the process into a repeatable automation workflow that
+            produces standardized outputs with far less manual intervention.
+          </p>
+          <ul>
+            <li>1 click push-button workflow</li>
+            <li>Direct push into Google Sheets</li>
+            <li>Reduced operational friction for recurring reporting</li>
+          </ul>
+        </div>
+
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="grid">
-    <div class="card">
-      <h2>The Problem</h2>
-      <p>
-        The prior process relied on recurring manual effort to prepare the Gross-to-Net Loss Ratio
-        reporting package. This created a workflow that was
-        <strong style="color:#d60068;">time-intensive, repetitive, and difficult to scale</strong>.
-      </p>
-      <ul>
-        <li>~4 hours of hands-on work each month</li>
-        <li>Manual data shaping, formatting, and output preparation</li>
-        <li>Higher exposure to human error and version inconsistency</li>
-      </ul>
-    </div>
+    <section class="section">
+      <div class="architecture-card">
+        <h2>Solution Architecture</h2>
+        <p class="architecture-intro">
+          The workflow was redesigned to connect source inputs directly to reporting output,
+          removing manual handoffs and embedding the logic in code rather than in repeated
+          analyst effort.
+        </p>
 
-    <div class="card">
-      <h2>The Outcome</h2>
-      <p>
-        Project Alpha transforms the process into a repeatable automation workflow that produces
-        standardized outputs with far less manual intervention.
-      </p>
-      <ul>
-        <li>1 click push-button workflow</li>
-        <li>Direct push into Google Sheets</li>
-        <li>Reduced operational friction for recurring reporting</li>
-      </ul>
-    </div>
-  </div>
+        <div class="architecture-grid">
+          <div class="arch-step">
+            <div class="arch-number">1</div>
+            <h3>Excel Inputs</h3>
+            <p>
+              Source files provide the underlying reporting data and serve as the starting point.
+            </p>
+          </div>
 
-  <div class="card" style="margin-top:22px;">
-    <h2>Solution Architecture</h2>
-    <div class="flow">
-      <div class="flow-step">Excel Inputs</div>
-      <div class="flow-step">Python Processing</div>
-      <div class="flow-step">Direct Sheet Update</div>
-    </div>
-  </div>
+          <div class="arch-step">
+            <div class="arch-number">2</div>
+            <h3>Python Processing</h3>
+            <p>
+              Logic standardizes, transforms, and prepares the data into reporting-ready structures.
+            </p>
+          </div>
 
-  <div class="demo">
-    <h2>Reporting Output Preview</h2>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <img src="Bridge.png" alt="Bridge" />
-        <div class="caption">Gross to Net Bridge</div>
+          <div class="arch-step">
+            <div class="arch-number">3</div>
+            <h3>Direct Sheet Update</h3>
+            <p>
+              Final outputs are written directly into Google Sheets for immediate downstream use.
+            </p>
+          </div>
+        </div>
+
+        <div class="pill-row">
+          <div class="pill">Walk Generation</div>
+          <div class="pill">QS Mix Output</div>
+          <div class="pill">Structured Payloads</div>
+          <div class="pill">Repeatable Monthly Run</div>
+          <div class="pill">Scalable Design Pattern</div>
+        </div>
       </div>
-      <div class="demo-item">
-        <img src="Mix.png" alt="Mix" />
-        <div class="caption">QS Mix Exhibit</div>
+    </section>
+
+    <section class="section">
+      <div class="demo-card">
+        <h2>Reporting Output Preview</h2>
+        <p>
+          Below are representative examples of the automated reporting views generated by
+          the workflow. These visuals illustrate the value of producing standardized,
+          presentation-ready outputs with minimal manual intervention.
+        </p>
+
+        <div class="demo-grid">
+          <div class="demo-item">
+            <img src="Bridge.png" alt="Gross to Net Bridge" />
+            <div class="demo-caption">
+              <strong>Gross to Net Bridge</strong><br />
+              Automated generation of the bridge view improves consistency and reduces manual
+              assembly time each cycle.
+            </div>
+          </div>
+
+          <div class="demo-item">
+            <img src="Mix.png" alt="QS Mix Exhibit" />
+            <div class="demo-caption">
+              <strong>QS Mix Exhibit</strong><br />
+              Standardized exhibit creation enables cleaner reporting and more reliable
+              downstream consumption.
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div class="small-card">
+          <h2>Business Impact</h2>
+          <p>
+            The value of Project Alpha is not just time savings — it is the conversion of a
+            recurring manual workflow into a controlled and extensible reporting capability.
+          </p>
+          <ul>
+            <li><strong>Time returned:</strong> ~4 hours saved per month</li>
+            <li><strong>Faster reporting:</strong> shorter cycle time from inputs to output</li>
+            <li><strong>Higher reliability:</strong> less manual intervention, less rework</li>
+            <li><strong>Better leverage:</strong> analyst time can shift to review and insight instead of preparation</li>
+          </ul>
+        </div>
+
+        <div class="small-card">
+          <h2>ROI Snapshot</h2>
+          <p>
+            The build effort was modest relative to the recurring benefit, making this a
+            high-return operational improvement.
+          </p>
+          <ul>
+            <li><strong>Build effort:</strong> approximately 3–4 hours</li>
+            <li><strong>Recurring savings:</strong> approximately 4 hours per month</li>
+            <li><strong>Break-even:</strong> effectively achieved within the first cycle</li>
+            <li><strong>Annualized benefit:</strong> 48+ hours returned per year</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div class="small-card">
+          <h2>Key Learnings</h2>
+          <ul>
+            <li>Automation creates the most value when it removes recurring analyst effort, not just one-time work</li>
+            <li>Direct system-to-system integration reduces process complexity and operational risk</li>
+            <li>Modular design makes future enhancements faster and easier to implement</li>
+            <li>Standardized outputs improve trust, repeatability, and executive readiness</li>
+          </ul>
+        </div>
+
+        <div class="small-card quote">
+          <h2>Strategic Takeaway</h2>
+          <p>
+            <strong>Project Alpha demonstrates how small, targeted automation investments can create outsized leverage in Finance.</strong>
+            By embedding recurring process logic into code, the team can reduce manual overhead, improve reporting control,
+            and create reusable foundations for broader automation across the organization.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Project Alpha • Gross-to-Net Loss Ratio Walk Automation<br />
+      Built to improve reporting efficiency, consistency, and scalability
     </div>
+
   </div>
-
-  <div class="grid">
-    <div class="card">
-      <h2>Business Impact</h2>
-      <ul>
-        <li>~4 hours saved per month</li>
-        <li>Faster reporting turnaround</li>
-        <li>Reduced manual error risk</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>ROI</h2>
-      <ul>
-        <li>Build: ~3–4 hours</li>
-        <li>Break-even: within first cycle</li>
-        <li>48+ hours saved annually</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer">
-    Project Alpha • Finance Automation • Lemonade
-  </div>
-
-</div>
 </body>
 </html>

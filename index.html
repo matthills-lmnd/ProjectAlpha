@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matt_Hills_ProjectAlpha</title>
+  <style>
+    :root { --bg:#f6f7fb; --card:#fff; --text:#1f2937; --muted:#6b7280; --accent:#e6007e; --border:#e5e7eb; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text)}
+    .page{max-width:1000px;margin:32px auto;padding:0 20px}
+    .hero{background:linear-gradient(135deg,#1f2937,#4b5563);color:#fff;border-radius:20px;padding:28px}
+    h1{margin:0;font-size:34px}
+    .subtitle{opacity:.85}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+    .metric{background:rgba(255,255,255,.1);padding:14px;border-radius:12px;text-align:center}
+    .metric .value{font-size:24px;font-weight:bold}
+    .metric .label{font-size:12px;opacity:.8}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+    .card{background:#fff;border-radius:16px;padding:18px;border:1px solid var(--border)}
+    h2{margin:0 0 10px;font-size:18px}
+    ul{margin:0;padding-left:18px}
+    li{margin:6px 0}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .flow-step{background:#fafafa;border:1px solid var(--border);padding:12px;border-radius:10px;text-align:center;font-weight:600;font-size:13px}
+    .demo-container{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .demo-item{display:flex;flex-direction:column}
+    .demo-item img{width:100%;border-radius:10px;border:1px solid var(--border)}
+    .caption{font-size:12px;color:var(--muted);margin-top:6px;text-align:center}
+    .footer{margin-top:20px;font-size:12px;text-align:right;color:var(--muted)}
+    @media(max-width:800px){.grid,.metrics,.flow{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <h1>Matt_Hills_ProjectAlpha</h1>
+  <p class="subtitle">Automated Gross-to-Net Loss Ratio reporting using a direct Python → Google Sheets pipeline.</p>
+  <div class="metrics">
+    <div class="metric"><div class="value">4 hrs</div><div class="label">Saved per run</div></div>
+    <div class="metric"><div class="value">3–4 hrs</div><div class="label">Build time</div></div>
+    <div class="metric"><div class="value">1 run</div><div class="label">Payback</div></div>
+    <div class="metric"><div class="value">48+ hrs</div><div class="label">Annual savings</div></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Problem</h2>
+    <ul>
+      <li>Manual monthly reporting (~4 hours)</li>
+      <li>Repetitive data processing and formatting</li>
+      <li>Outputs recreated across Excel and Google Sheets</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Results</h2>
+    <ul>
+      <li>One-command execution (<code>python3 main.py</code>)</li>
+      <li>Direct update to Google Sheets</li>
+      <li>Standardized and consistent outputs</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Solution</h2>
+    <div class="flow">
+      <div class="flow-step">Excel Inputs</div>
+      <div class="flow-step">Python Processing</div>
+      <div class="flow-step">Direct Sheet Update</div>
+    </div>
+    <ul>
+      <li>Generates Walk + QS Mix</li>
+      <li>Writes directly to Google Sheets</li>
+      <li>Uses structured payload for updates</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Tools</h2>
+    <ul>
+      <li>Python (pandas, numpy)</li>
+      <li>Google Sheets integration</li>
+      <li>Excel</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card demo">
+  <h2>Demo</h2>
+  <div class="demo-container">
+    <div class="demo-item">
+      <img src="Bridge.png" alt="Gross to Net Bridge" />
+      <div class="caption">Gross to Net Bridge</div>
+    </div>
+    <div class="demo-item">
+      <img src="Mix.png" alt="QS Mix Exhibit" />
+      <div class="caption">QS Mix Exhibit</div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>ROI</h2>
+    <ul>
+      <li>Build: ~3–4 hours</li>
+      <li>Saves: 4 hours/month</li>
+      <li>Break-even: 1 cycle</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Key Learnings</h2>
+    <ul>
+      <li>Direct integration simplifies pipelines</li>
+      <li>Modular design improves scalability</li>
+      <li>Automation is most valuable when embedded in user tools</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">Gross-to-Net Loss Ratio Walk Automation</div>
+
+</div>
+</body>
+</html>

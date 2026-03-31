@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Alpha | GTN Loss Ratio Automation</title>
+
   <style>
     :root{
       --bg:#f5f7fb;
@@ -20,6 +21,7 @@
     }
 
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: Inter, Arial, sans-serif;
@@ -27,17 +29,29 @@
       color:var(--text);
     }
 
-    .page{max-width:1100px;margin:0 auto;padding:28px 20px}
+    .page{
+      max-width:1160px;
+      margin:0 auto;
+      padding:28px 20px 48px;
+    }
 
     .hero{
       background:linear-gradient(135deg,var(--navy),var(--navy-2));
       color:#fff;
-      border-radius:24px;
-      padding:32px;
+      border-radius:28px;
+      padding:34px;
     }
 
-    h1{margin:0 0 10px;font-size:38px}
-    .hero-subtitle{opacity:.9;max-width:700px;line-height:1.6}
+    h1{
+      margin:0 0 12px;
+      font-size:40px;
+    }
+
+    .hero-subtitle{
+      opacity:.9;
+      max-width:760px;
+      line-height:1.6;
+    }
 
     .metrics{
       display:grid;
@@ -53,57 +67,74 @@
       text-align:center;
     }
 
-    .metric .value{font-size:26px;font-weight:800}
-    .metric .label{font-size:12px;opacity:.8;margin-top:4px}
+    .metric .value{
+      font-size:28px;
+      font-weight:800;
+    }
+
+    .metric .label{
+      font-size:12px;
+      opacity:.8;
+      margin-top:4px;
+    }
 
     .grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:18px;
-      margin-top:20px;
+      margin-top:22px;
     }
 
     .card{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:18px;
-      padding:20px;
+      border-radius:var(--radius);
+      padding:22px;
     }
 
     h2{margin:0 0 10px}
-    p{color:var(--muted);line-height:1.6}
 
-    ul{padding-left:18px}
-    li{margin:6px 0}
+    p{
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    ul{
+      padding-left:18px;
+      margin-top:12px;
+    }
+
+    li{
+      margin:6px 0;
+    }
 
     .flow{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:12px;
+      gap:12px;
+      margin-top:14px;
     }
 
     .flow-step{
       border:1px solid var(--border);
-      padding:12px;
-      border-radius:12px;
+      border-radius:14px;
+      padding:14px;
       text-align:center;
-      font-size:13px;
       background:#fafbff;
     }
 
     .demo{
-      margin-top:20px;
+      margin-top:22px;
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:20px;
-      padding:20px;
+      border-radius:24px;
+      padding:22px;
     }
 
     .demo-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:14px;
+      gap:16px;
       margin-top:10px;
     }
 
@@ -114,14 +145,14 @@
     }
 
     .caption{
-      font-size:13px;
       text-align:center;
+      font-size:13px;
       color:var(--muted);
       margin-top:6px;
     }
 
     .footer{
-      margin-top:20px;
+      margin-top:24px;
       text-align:center;
       font-size:12px;
       color:var(--muted);
@@ -132,6 +163,7 @@
         grid-template-columns:1fr;
       }
     }
+
   </style>
 </head>
 
@@ -141,11 +173,10 @@
   <div class="hero">
     <h1>Automating Gross-to-Net Loss Ratio Reporting</h1>
     <p class="hero-subtitle">
-      Project Alpha replaces a manual monthly workflow with a scalable Python → Google Sheets pipeline,
-      improving speed, consistency, and reliability across finance reporting.
+      Project Alpha replaces a repetitive, manual monthly reporting workflow with a
+      scalable Python → Google Sheets pipeline, improving speed, consistency, and reliability.
     </p>
 
-    <!-- UPDATED METRICS -->
     <div class="metrics">
       <div class="metric">
         <div class="value">4 hrs</div>
@@ -169,26 +200,33 @@
   <div class="grid">
     <div class="card">
       <h2>The Problem</h2>
-      <p>Manual reporting created inefficiencies and inconsistencies.</p>
+      <p>
+        The prior process relied on recurring manual effort to prepare the Gross-to-Net Loss Ratio
+        reporting package. This created a workflow that was
+        <strong style="color:#d60068;">time-intensive, repetitive, and difficult to scale</strong>.
+      </p>
       <ul>
-        <li>~4 hours per month of manual work</li>
-        <li>Repetitive processing and formatting</li>
-        <li>Duplicate outputs across Excel and Sheets</li>
+        <li>~4 hours of hands-on work each month</li>
+        <li>Manual data shaping, formatting, and output preparation</li>
+        <li>Higher exposure to human error and version inconsistency</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>The Outcome</h2>
-      <p>A streamlined and repeatable reporting workflow.</p>
+      <p>
+        Project Alpha transforms the process into a repeatable automation workflow that produces
+        standardized outputs with far less manual intervention.
+      </p>
       <ul>
-        <li>One-click execution</li>
-        <li>Direct Google Sheets updates</li>
-        <li>Consistent outputs</li>
+        <li>1 click push-button workflow</li>
+        <li>Direct push into Google Sheets</li>
+        <li>Reduced operational friction for recurring reporting</li>
       </ul>
     </div>
   </div>
 
-  <div class="card" style="margin-top:20px;">
+  <div class="card" style="margin-top:22px;">
     <h2>Solution Architecture</h2>
     <div class="flow">
       <div class="flow-step">Excel Inputs</div>
@@ -215,7 +253,7 @@
     <div class="card">
       <h2>Business Impact</h2>
       <ul>
-        <li>4 hours saved monthly</li>
+        <li>~4 hours saved per month</li>
         <li>Faster reporting turnaround</li>
         <li>Reduced manual error risk</li>
       </ul>
